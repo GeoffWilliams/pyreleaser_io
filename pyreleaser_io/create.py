@@ -1,5 +1,6 @@
 import logging
-import pyreleaser_io.github
+import pyreleaser_io.vcs.github
+import pyreleaser_io.vcs.missing
 import pyreleaser_io.template
 import pyreleaser_io.util
 import os
@@ -14,19 +15,39 @@ layouts = {
     ]
 }
 
+vcs = {
+    "github": pyreleaser_io.vcs.github,
+    "none": pyreleaser_io.vcs.missing
+}
+
+
+def get_vcs(settings):
+    driver = False
+    _module = None
+    for name, module in vcs.items():
+        logger.debug(f"trying to setup VCS {name}")
+        _module = module
+        driver = module.get_instance(settings.get(name, {}))
+        if driver:
+            logger.debug(f"got a VCS driver! {name}")
+            break
+
+    return _module, driver
+
 
 def interactive(settings):
+    vcs_module, vcs_driver = get_vcs(settings)
+
     print("Lets make something...")
     project = {}
     project["name"] = input("project name? ")
 
-    g = pyreleaser_io.github.get_instance(settings.get("github"))
-    default_project_url = pyreleaser_io.github.project_url(project, g)
+    default_project_url = vcs_module.project_url(project, vcs_driver)
     default_description = "I'll add this later..."
     project["url"] = input(f"Project URL? [{default_project_url}]") or default_project_url
     project["description"] = input(f"Project description? [{default_description}]") or default_description
 
-    pyreleaser_io.github.add_user_info(project, g)
+    vcs_module.add_user_info(project, vcs_driver)
 
     create_project(project)
 

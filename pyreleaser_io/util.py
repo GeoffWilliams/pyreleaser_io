@@ -19,12 +19,15 @@ def setup_logging(level, logger_name=__name__):
 
 
 def settings():
-    settings_file = str(pathlib.Path.home()) + "/.pyreleaser_io.yaml"
-    logger.debug("parsing: %s", settings_file)
-    if not os.path.isfile(settings_file):
-        raise FileNotFoundError(f"missing settings file: {settings_file}")
-    with open(settings_file, 'r') as f:
-        data = yaml.safe_load(f.read())
+    settings_file = os.path.join(str(pathlib.Path.home()), ".pyreleaser_io.yaml")
+    if os.path.isfile(settings_file):
+        logger.debug("parsing: %s", settings_file)
+        with open(settings_file, 'r') as f:
+            data = yaml.safe_load(f.read())
+    else:
+        logging.warning(f"skipping missing settings file: {settings_file}")
+        data = {}
+
     return data.get("pyreleaser_io", {})
 
 

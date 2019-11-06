@@ -1,7 +1,7 @@
 # pyreleaser_io
 
 ## Status
-**This project does nothing yet**
+**This project does _almost_ nothing**
 
 ## Overview
 This project is a response to a twitter post over at: 
@@ -12,13 +12,13 @@ Aim is to make creating, testing, publishing python projects a bit easier!
 # Current development focus
 * Creating projects
 
-# What's working so far? (nothing)
+# What's working so far?
 
 | Task                                | Status |
 | ---                                 | ---    |
 | Create a new project (GH)           | no     |
-| Create a new project (files)        | no     |
-| ...plain/pipenv ready for pypi      | no     |
+| Create a new project (files)        | yes    |
+| ...plain/pipenv ready for pypi      | yes    |
 | ...CLI executable ready for pypi    | no     |
 | ...Flask                            | no     |
 | ...Docker (for generated projects)  | no     |
@@ -34,13 +34,33 @@ Aim is to make creating, testing, publishing python projects a bit easier!
 | support for circleci                | no     |
 | *AAS for use by other systems       | no     |
 | programatic settings file creation  | no     |
-
-
+| autoinstall dependencies            | no     |
+| create project with no vcs          | yes    |
 
 # settings file format?
+
+```yaml
 ---
 pyreleaser_io:
   github:
-    user: yourgithubuserid
     token: yourgithubtoken
+```
+
+
+# Quickstart
+
+**Install pyreleaser**
+
+```shell
+sudo yum install python3
+pip3 install pyreleaser_io --user
+pip3 install pipenv --user
+pip3 install pyyaml --user
+pip3 install jinja2 --user
+pip3 install pygithub --user
+```
+
+todo: automatic dependency installation
+
+**Creating a project...**
 
