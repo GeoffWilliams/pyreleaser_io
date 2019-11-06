@@ -11,6 +11,7 @@ pytest-cov = "*"
 jinja2 = "*"
 pygithub = "*"
 pyyaml = "*"
+pyreleaser-io = {editable = true,path = "."}
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"

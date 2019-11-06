@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyreleaser_io",
-    version="0.0.1",
+    version="0.0.3",
     author="Geoff Williams",
     author_email="geoff@declarativesystems.com",
     description="create, test, publish your python projects!",

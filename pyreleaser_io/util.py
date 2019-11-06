@@ -37,6 +37,13 @@ def run(cmd, check=True):
     cmd - command to run (array)
 
     """
-    completed_process = subprocess.run(cmd, shell=True, capture_output=True, check=check)
+    try:
+        # RHEL8 uses python 3.6 so we're stuck with `check_output()` for the next
+        # few years
+        output = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        if check:
+            raise e
 
-    return completed_process.stdout.decode().strip()
+        output = e.output
+    return output.decode().strip()

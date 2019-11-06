@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d4c3773ffd84dec9d88c11b5aa8e95f79a011b0d04c89c98cdb8cbbb52cbccec"
+            "sha256": "241b0d23093401fbb61d0a860305fa6dc55cf6b2b1a347064ac4db94c307c2eb"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.7"
+            "python_version": "3.6"
         },
         "sources": [
             {
@@ -98,6 +98,10 @@
                 "sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96"
             ],
             "version": "==1.7.1"
+        },
+        "pyreleaser-io": {
+            "editable": true,
+            "path": "."
         },
         "pyyaml": {
             "hashes": [
