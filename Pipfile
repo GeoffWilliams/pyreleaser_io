@@ -7,11 +7,6 @@ verify_ssl = true
 pytest = "*"
 pytest-cov = "*"
 
-[packages]
-jinja2 = "*"
-pygithub = "*"
-pyyaml = "*"
-pyreleaser-io = {editable = true,path = "."}
-
 [requires]
 python_version = "3.6"
+

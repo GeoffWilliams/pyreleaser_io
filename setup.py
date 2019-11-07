@@ -26,6 +26,13 @@ setuptools.setup(
             "pyreleaser=pyreleaser_io.cli:main",
         ]
     },
-    include_package_data=True
+    include_package_data=True,
+    install_requires=[
+        "jinja2",
+        "pygithub",
+        "pyyaml",
+        "halo",
+        "console-menu",
+    ]
 )
 

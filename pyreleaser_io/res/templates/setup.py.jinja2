@@ -22,10 +22,9 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     entry_points={
-        "console_scripts": [
-            "pyreleaser={{ project.name }}.cli:main",
-        ]
+        "console_scripts": {{ project.console_scripts or [] }}
     },
-    include_package_data=True
+    include_package_data=True,
+    install_requires={{ project.install_requires or []}}
 )
 

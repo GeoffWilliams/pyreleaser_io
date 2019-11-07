@@ -42,8 +42,10 @@ Description: # pyreleaser_io
         | support for circleci                | no     |
         | *AAS for use by other systems       | no     |
         | programatic settings file creation  | no     |
-        | autoinstall dependencies            | no     |
+        | autoinstall dependencies            | yes    |
         | create project with no vcs          | yes    |
+        | pyinstaller support                 | no     |
+        | Makefile support                    | no     |
         
         # settings file format?
         
@@ -73,6 +75,18 @@ Description: # pyreleaser_io
         **Creating a project...**
         
         
+        # Troublshooting
+        creating projects always fails with error:
+        
+        ```
+        pipenv.vendor.requirementslib.exceptions.RequirementError: Error parsing requirement . -- are you sure it is installable?
+        ```
+        
+        I run `pipenv` manually and get the same error - nothing fixes this, what
+        gives?
+        
+        This can be caused by an errant `Pipfile` _above_ the directory you are
+        working in. Try moving it out of the way
 Platform: UNKNOWN
 Classifier: Development Status :: 1 - Planning
 Classifier: Programming Language :: Python :: 3

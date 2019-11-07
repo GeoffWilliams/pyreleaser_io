@@ -14,9 +14,8 @@ def render(template_filename, **kwargs):
     return template.render(kwargs)
 
 
-def render_to_file(template_filename, target_filename=None, target_dir=None, **kwargs):
-    _target_filename = target_filename or \
-                      os.path.join(target_dir, template_filename.replace(".jinja2", ""))
+def render_to_file(template_filename, target_filename=None, **kwargs):
+    _target_filename = target_filename or template_filename.replace(".jinja2", "")
     logger.debug(f"writing to {target_filename}")
     with open(_target_filename, 'w') as f:
         logger.debug(f"writing project file: {_target_filename} (args: {kwargs})")

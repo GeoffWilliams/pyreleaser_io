@@ -40,10 +40,25 @@ def run(cmd, check=True):
     try:
         # RHEL8 uses python 3.6 so we're stuck with `check_output()` for the next
         # few years
-        output = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT)
+        logger.debug(f"running command {cmd} in directory {os.getcwd()}")
+        output = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT).decode().strip()
     except subprocess.CalledProcessError as e:
+        output = e.output.decode()
         if check:
+            logger.error(output)
             raise e
 
-        output = e.output
-    return output.decode().strip()
+    return output
+
+
+def get_res_filename(filename):
+    return os.path.join(
+        os.path.dirname(
+            os.path.realpath(__file__)
+        ),
+        filename
+    )
+
+def get_res_file_content(filename):
+    with open(get_res_filename(filename), "r") as f:
+        return f.read()

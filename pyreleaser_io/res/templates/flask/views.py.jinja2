@@ -1,0 +1,6 @@
+# see https://flask.palletsprojects.com/en/1.1.x/patterns/packages/#larger-applications
+from {{ project.name }} import app
+
+@app.route('/')
+def index():
+    return 'Hello World!'
