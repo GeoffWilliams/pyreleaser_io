@@ -1,6 +1,7 @@
 import pyreleaser_io.create
 import tempfile
 import os
+import pyreleaser_io.skeleton.simple
 
 
 def test_create():
@@ -8,7 +9,8 @@ def test_create():
     os.chdir(test_dir)
 
     project = {
-        "name": "test_proj"
+        "name": "test_proj",
+        "skeleton": pyreleaser_io.skeleton.simple
     }
 
     pyreleaser_io.create.create_project(project)

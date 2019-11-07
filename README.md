@@ -97,3 +97,10 @@ gives?
 
 This can be caused by an errant `Pipfile` _above_ the directory you are
 working in. Try moving it out of the way
+
+## Developing
+
+**Run tests with coverage**
+
+(once) pipenv install --dev
+make test
