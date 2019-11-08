@@ -9,12 +9,22 @@ A skeleton Flask app was automatically configured by pyreleaser_io for:
   https://flask.palletsprojects.com/en/1.1.x/patterns/packages/#larger-applications
 * pytest unit testing, based on
   https://www.patricksoftwareblog.com/testing-a-flask-application-using-pytest/
+* `uwsgi` support based on
+  https://flask.palletsprojects.com/en/1.1.x/deploying/uwsgi/
 
-## Running locally
+## Running a development server
 
 ```shell
 FLASK_APP={{ project.name }} pipenv run flask run
 ```
+
+## Running a production (uwsgi) server
+
+```shell
+pipenv run uwsgi -s /tmp/{{ project.name }}.sock --manage-script-name --mount /{{ project.name }}={{ project.name }}:app
+```
+
+Reference: https://flask.palletsprojects.com/en/1.1.x/deploying/uwsgi/
 
 ## Testing
 Approach based on:

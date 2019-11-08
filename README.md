@@ -20,7 +20,7 @@ Aim is to make creating, testing, publishing python projects a bit easier!
 | Create a new project (files)        | yes    |
 | ...plain/pipenv ready for pypi      | yes    |
 | ...CLI executable ready for pypi    | yes    |
-| ...Flask                            | mostly |
+| ...Flask                            | yes    |
 | ...Docker (for generated projects)  | no     |
 | ...setup.py wizard                  | no     |
 | Testing/CI setup                    | no     |

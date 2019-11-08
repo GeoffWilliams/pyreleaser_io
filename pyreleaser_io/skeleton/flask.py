@@ -18,9 +18,9 @@ def init(project):
 
     pyreleaser_io.skeleton.simple.init(project)
 
-    with Halo(text='Installing support...', spinner='dots'):
-        pyreleaser_io.util.run("pipenv install flask")
-    logger.info("✔️ flask installed")
+    with Halo(text='Installing flask and wsgi...', spinner='dots'):
+        pyreleaser_io.util.run("pipenv install flask uwsgi")
+    logger.info("✔️ flask and wsgi installed")
 
     project_dirs = [
         os.path.join(project_name, "static"),
