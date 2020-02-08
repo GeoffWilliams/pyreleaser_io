@@ -36,7 +36,8 @@ def init(project):
     open(init_py, "a").close()
 
     with Halo(text='Creating pipenv...', spinner='dots'):
-        pyreleaser_io.util.run("pipenv install -e .")
-        pyreleaser_io.util.run("pipenv install --dev pytest")
-    logger.info("✔️ pipenv created")
+        status = pyreleaser_io.util.run("pipenv install -e .", False)
+        status &= pyreleaser_io.util.run("pipenv install --dev pytest", False)
 
+        if status:
+            logger.info("✔️ pipenv created")

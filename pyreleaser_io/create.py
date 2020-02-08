@@ -40,17 +40,14 @@ def get_vcs(settings):
     return _module, driver
 
 
-def interactive(settings):
-    vcs_module, vcs_driver = get_vcs(settings)
+def interactive(settings, online):
 
     print("Lets make something...")
     project = {}
     project["name"] = input("project name? ")
 
-    default_project_url = vcs_module.project_url(project, vcs_driver)
     default_description = "I'll add this later..."
 
-    project["url"] = input(f"Project URL? [{default_project_url}]") or default_project_url
     project["description"] = input(f"Project description? [{default_description}]") or default_description
 
     if project["description"] == default_description:
@@ -63,7 +60,11 @@ def interactive(settings):
     selection_menu.join()
     project["skeleton"] = skeletons.get(skeleton_items[selection_menu.selected_option])
 
-    vcs_module.add_user_info(project, vcs_driver)
+    if online:
+        vcs_module, vcs_driver = get_vcs(settings)
+        default_project_url = vcs_module.project_url(project, vcs_driver)
+        project["url"] = input(f"Project URL? [{default_project_url}]") or default_project_url
+        vcs_module.add_user_info(project, vcs_driver)
 
     create_project(project)
 

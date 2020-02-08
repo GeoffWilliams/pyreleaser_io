@@ -33,22 +33,26 @@ def settings():
 
 def run(cmd, check=True):
     """
-    run a command, return output
+    run a command, return true if it worked otherwise false
     cmd - command to run (array)
 
     """
+    status = False
     try:
         # RHEL8 uses python 3.6 so we're stuck with `check_output()` for the next
         # few years
         logger.debug(f"running command {cmd} in directory {os.getcwd()}")
-        output = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT).decode().strip()
+        _ = subprocess.check_output(cmd, shell=True, stderr=subprocess.STDOUT).decode().strip()
+        status = True
     except subprocess.CalledProcessError as e:
         output = e.output.decode()
         if check:
             logger.error(output)
             raise e
+        else:
+            logger.warning(output)
 
-    return output
+    return status
 
 
 def get_res_filename(filename):

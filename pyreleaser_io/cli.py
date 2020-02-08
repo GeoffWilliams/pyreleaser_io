@@ -21,6 +21,10 @@ def main():
                         default=False,
                         action='store_true',
                         help='debug mode enabled')
+    parser.add_argument('--offline',
+                        default=False,
+                        action='store_true',
+                        help='work offline')
     parser.add_argument('--version',
                         default=False,
                         action='store_true',
@@ -39,6 +43,6 @@ def main():
     if args.version:
         print(version())
     elif args.create_project:
-        pyreleaser_io.create.interactive(settings)
+        pyreleaser_io.create.interactive(settings, not args.offline)
     else:
         parser.print_usage()

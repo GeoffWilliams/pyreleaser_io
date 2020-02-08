@@ -38,6 +38,9 @@ Aim is to make creating, testing, publishing python projects a bit easier!
 | create project with no vcs          | yes    |
 | pyinstaller support                 | no     |
 | Makefile support                    | no     |
+| user-customisable templates         | no     |
+| logger for flask                    | no     |
+
 
 # settings file format?
 
