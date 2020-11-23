@@ -1,7 +1,9 @@
 # see https://flask.palletsprojects.com/en/1.1.x/patterns/packages/#larger-applications
 from {{ project.name }} import app
+from loguru import logger
 
 
 @app.route('/')
 def index():
+    logger.info("hello logger world")
     return 'Hello World!'

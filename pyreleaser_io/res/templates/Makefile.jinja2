@@ -1,5 +1,5 @@
 test:
-	pipenv run pytest --capture=no --cov=pyreleaser_io tests/
+	pipenv run pytest
 
 package:
 	python setup.py sdist bdist_wheel
@@ -12,7 +12,6 @@ clean:
 
 dev_env:
 	pip install -e .
-
 
 requirements.txt:
 	pipenv run pip freeze >> requirements.txt

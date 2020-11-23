@@ -3,3 +3,6 @@ pygithub
 pyyaml
 halo
 console-menu
+loguru
+docopt
+pipenv

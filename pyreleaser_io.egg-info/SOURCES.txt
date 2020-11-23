@@ -13,6 +13,7 @@ pyreleaser_io.egg-info/entry_points.txt
 pyreleaser_io.egg-info/requires.txt
 pyreleaser_io.egg-info/top_level.txt
 pyreleaser_io/res/templates/MANIFEST.in.jinja2
+pyreleaser_io/res/templates/Makefile.jinja2
 pyreleaser_io/res/templates/README.md.jinja2
 pyreleaser_io/res/templates/setup.py.jinja2
 pyreleaser_io/res/templates/cli/DEVELOP.md.jinja2

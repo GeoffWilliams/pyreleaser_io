@@ -1,21 +1,23 @@
-import logging
+from loguru import logger
 import sys
 import pathlib
 import os
 import yaml
 import subprocess
 
-logger = logging.getLogger(__name__)
 
 
-def setup_logging(level, logger_name=__name__):
-    _logger = logging.getLogger(logger_name)
-    _logger.setLevel(level)
-    console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setFormatter(logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s"))
-    _logger.addHandler(console_handler)
 
-    _logger.debug("====[debug mode enabled]====")
+def setup_logging(level, logger_name=None):
+    logger_name = logger_name or __name__.split(".")[0]
+    log_formats = {
+        "DEBUG": "{time} {level} {message}",
+        "INFO": "{message}",
+    }
+
+    logger.remove()
+    logger.add(sys.stdout, format=log_formats[level], filter=logger_name, level=level)
+    logger.debug("====[debug mode enabled]====")
 
 
 def settings():
@@ -25,7 +27,7 @@ def settings():
         with open(settings_file, 'r') as f:
             data = yaml.safe_load(f.read())
     else:
-        logging.warning(f"skipping missing settings file: {settings_file}")
+        logger.warning(f"skipping missing settings file: {settings_file}")
         data = {}
 
     return data.get("pyreleaser_io", {})
@@ -62,6 +64,7 @@ def get_res_filename(filename):
         ),
         filename
     )
+
 
 def get_res_file_content(filename):
     with open(get_res_filename(filename), "r") as f:

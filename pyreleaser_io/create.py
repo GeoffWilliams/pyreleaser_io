@@ -12,7 +12,6 @@ from consolemenu.items import *
 logger = logging.getLogger(__name__)
 
 
-
 vcs = {
     "github": pyreleaser_io.vcs.github,
     "none": pyreleaser_io.vcs.missing
@@ -25,6 +24,7 @@ def get_skeletons():
         skeletons[modname] = importlib.import_module("." + modname, package="pyreleaser_io.skeleton")
         #print("Found submodule %s (is a package: %s)" % (modname, ispkg))
     return skeletons
+
 
 def get_vcs(settings):
     driver = False
@@ -41,10 +41,8 @@ def get_vcs(settings):
 
 
 def interactive(settings, online):
-
     print("Lets make something...")
-    project = {}
-    project["name"] = input("project name? ")
+    project = {"name": input("project name? ")}
 
     default_description = "I'll add this later..."
 

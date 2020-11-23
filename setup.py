@@ -33,6 +33,9 @@ setuptools.setup(
         "pyyaml",
         "halo",
         "console-menu",
+        "loguru",
+        "docopt",
+        "pipenv"
     ]
 )
 

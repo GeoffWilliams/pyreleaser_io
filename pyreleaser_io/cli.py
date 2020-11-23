@@ -1,11 +1,25 @@
-import argparse
-import logging
+"""pyreleaser - python release helper tool
+
+Usage:
+  pyreleaser [--debug] [--offline] <command>
+  pyreleaser --version
+
+Arguments:
+  <command> create-project
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+  --debug       Extra debugging messages
+  --offline     work offline
+
+"""
+from loguru import logger
+from docopt import docopt
 import pyreleaser_io.util
 import pkg_resources
 import pyreleaser_io.create
 import pyreleaser_io.util
-
-logger = logging.getLogger(__name__)
 
 
 def version():
@@ -13,36 +27,12 @@ def version():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="""
-    pyreleaser - python release helper tool
-    """)
-
-    parser.add_argument('--debug',
-                        default=False,
-                        action='store_true',
-                        help='debug mode enabled')
-    parser.add_argument('--offline',
-                        default=False,
-                        action='store_true',
-                        help='work offline')
-    parser.add_argument('--version',
-                        default=False,
-                        action='store_true',
-                        help='Print the sysdef version and exit')
-    parser.add_argument('--create-project',
-                        default=False,
-                        action='store_true',
-                        help='create a project')
-    args = parser.parse_args()
-    pyreleaser_io.util.setup_logging(
-        logging.DEBUG if args.debug else logging.INFO, "pyreleaser_io"
-    )
+    arguments = docopt(__doc__, version=pkg_resources.require("pyreleaser_io")[0].version)
+    pyreleaser_io.util.setup_logging("DEBUG" if arguments['--debug'] else "INFO")
 
     settings = pyreleaser_io.util.settings()
 
-    if args.version:
-        print(version())
-    elif args.create_project:
-        pyreleaser_io.create.interactive(settings, not args.offline)
+    if arguments["<command>"] == "create-project":
+        pyreleaser_io.create.interactive(settings, not arguments["--offline"])
     else:
-        parser.print_usage()
+        raise RuntimeError("bad invocation")
