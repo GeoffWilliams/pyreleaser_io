@@ -17,7 +17,7 @@ idna==2.8
 immutables==0.14
 importlib-metadata==0.23
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 log-symbols==0.0.14
 loguru==0.5.3
 MarkupSafe==1.1.1
