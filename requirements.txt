@@ -31,7 +31,7 @@ pyparsing==2.4.4
 -e git+https://github.com/GeoffWilliams/pyreleaser_io.git@49804057119d84fd9820c93147d4c628e5eb63ce#egg=pyreleaser_io
 pytest==5.2.2
 pytest-cov==2.8.1
-PyYAML==5.1.2
+PyYAML==5.4
 requests==2.22.0
 six==1.15.0
 spinners==0.0.24
