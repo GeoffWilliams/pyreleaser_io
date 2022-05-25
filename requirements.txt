@@ -26,7 +26,7 @@ packaging==19.2
 pluggy==0.13.0
 py==1.8.0
 PyGithub==1.44.1
-PyJWT==1.7.1
+PyJWT==2.4.0
 pyparsing==2.4.4
 -e git+https://github.com/GeoffWilliams/pyreleaser_io.git@49804057119d84fd9820c93147d4c628e5eb63ce#egg=pyreleaser_io
 pytest==5.2.2
